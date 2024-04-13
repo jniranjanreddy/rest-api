@@ -6,9 +6,11 @@ class ItemSchema(Schema):
     price = fields.Int(required=True)
     
 
+
 class ItemGetSchema(Schema):
     id = fields.Str(dump_only=True)
-    item = fields.Nested(ItemSchema)
+    name = fields.Str(dump_only=True)
+    price = fields.Int(required=True)
 
 
 class SuccessMessageSchema(Schema):
