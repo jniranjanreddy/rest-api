@@ -17,7 +17,7 @@ except:
     print("Error connecting to database")
 ##########################################
 ##Get method
-@app.route('/users', methods=['GET'])
+@app.route('/students', methods=['GET'])
 def get_some_users():
     try:
         data = list(db.users.find())
@@ -39,12 +39,12 @@ def get_some_users():
 
 ##########################################
 ## Post Method
-@app.route('/users', methods=['POST'])
+@app.route('/students', methods=['POST'])
 def create_user():
     try:
         user = {
             "name":request.form["name"],
-            "lastname":request.form["lastname"]
+            # "lastname":request.form["lastname"]
         }
         dbResponse = db.users.insert_one(user)
         print(dbResponse.inserted_id)
@@ -65,7 +65,7 @@ def create_user():
         print("*******")
 #########################################
 ## Put Method
-@app.route('/users/<id>', methods=['PATCH'])
+@app.route('/students/<id>', methods=['PATCH'])
 def update_user(id):
     try:
         dbResponse = db.users.update_one(
@@ -110,7 +110,7 @@ def update_user(id):
          )
 #########################################
 ## Delete Method
-@app.route('/users/<id>', methods=['DELETE'])
+@app.route('/students/<id>', methods=['DELETE'])
 def delete_user(id):
     try:
         dbResponse = db.users.delete_one({"_id":ObjectId(id)})
